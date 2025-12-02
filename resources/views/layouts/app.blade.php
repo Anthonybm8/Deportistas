@@ -122,7 +122,6 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Logout con confirmación
             document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
                 e.preventDefault();
                 
@@ -142,7 +141,6 @@
                 });
             });
             
-            // Ocultar spinner después de cargar
             setTimeout(() => {
                 const spinner = document.getElementById('spinner');
                 if (spinner) {
@@ -150,7 +148,6 @@
                 }
             }, 500);
             
-            // Mostrar mensajes de éxito/error
             @if(session('success'))
                 Swal.fire({
                     icon: 'success',
