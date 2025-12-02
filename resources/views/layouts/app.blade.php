@@ -3,41 +3,22 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Hotelier - Hotel HTML Template</title>
+    <title>Sistema Deportistas</title>
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <meta content="" name="keywords">
     <meta content="" name="description">
 
     <link href="{{ asset('img/favicon.ico') }}" rel="icon">
+    <link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 
-<link href="{{ asset('lib/animate/animate.min.css') }}" rel="stylesheet">
-<link href="{{ asset('lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
-<link href="{{ asset('lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet">
-
-<link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
-
-    <!-- Libraries Stylesheet -->
-    <link href="lib/animate/animate.min.css" rel="stylesheet">
-    <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-    <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
-
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- Template Stylesheet -->
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- Librerías adicionales de la plantilla original -->
-    <!-- SweetAlert2 -->
+    <!-- Librerías adicionales -->
     <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.min.css" rel="stylesheet">
-
-    <!-- DataTables -->
     <link href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css" rel="stylesheet">
     <link href="https://cdn.datatables.net/buttons/2.3.6/css/buttons.dataTables.min.css" rel="stylesheet">
-
-    <!-- File Input -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-fileinput@5.5.5/css/fileinput.min.css" rel="stylesheet">
 
     @stack('styles')
@@ -57,7 +38,7 @@
         <div class="container-fluid bg-dark px-0">
             <div class="row gx-0">
                 <div class="col-lg-3 bg-dark d-none d-lg-block">
-                    <a href="index.html" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
+                    <a href="{{ route('pais.index') }}" class="navbar-brand w-100 h-100 m-0 p-0 d-flex align-items-center justify-content-center">
                         <h1 class="m-0 text-primary text-uppercase">SPORTS</h1>
                     </a>
                 </div>
@@ -65,38 +46,41 @@
                     <div class="row gx-0 bg-white d-none d-lg-flex">
                         <div class="col-lg-7 px-5 text-start">
                             <div class="h-100 d-inline-flex align-items-center py-2 me-4">
-                                <i class="fa fa-envelope text-primary me-2"></i>
-                                <p class="mb-0">anthony.monta2291@utc.edu.ec</p>
+                                <i class="fa fa-user text-primary me-2"></i>
+                                <p class="mb-0">Usuario: <strong>{{ session('username') ?: 'Invitado' }}</strong></p>
                             </div>
                             <div class="h-100 d-inline-flex align-items-center py-2">
-                                <i class="fa fa-phone-alt text-primary me-2"></i>
-                                <p class="mb-0">0983189799</p>
+                                <i class="fa fa-calendar text-primary me-2"></i>
+                                <p class="mb-0">{{ date('d/m/Y') }}</p>
                             </div>
                         </div>
                         <div class="col-lg-5 px-5 text-end">
                             <div class="d-inline-flex align-items-center py-2">
-                                <a class="me-3" href=""><i class="fab fa-facebook-f"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-linkedin-in"></i></a>
-                                <a class="me-3" href=""><i class="fab fa-instagram"></i></a>
-                                <a class="" href=""><i class="fab fa-youtube"></i></a>
+                                @if(session('logueado'))
+                                <a href="#" id="logoutBtn" class="btn btn-danger btn-sm">
+                                    <i class="fas fa-sign-out-alt me-1"></i> Cerrar Sesión
+                                </a>
+                                @else
+                                <a href="{{ route('login') }}" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-sign-in-alt me-1"></i> Iniciar Sesión
+                                </a>
+                                @endif
                             </div>
                         </div>
                     </div>
                     <nav class="navbar navbar-expand-lg bg-dark navbar-dark p-3 p-lg-0">
-                        <a href="index.html" class="navbar-brand d-block d-lg-none">
-                            <h1 class="m-0 text-primary text-uppercase">Hotelier</h1>
+                        <a href="{{ route('pais.index') }}" class="navbar-brand d-block d-lg-none">
+                            <h1 class="m-0 text-primary text-uppercase">SPORTS</h1>
                         </a>
                         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
                             <div class="navbar-nav mr-auto py-0">
-                                <a href="#" class="nav-item nav-link active">BIENVENIDO</a>
-                                <a href="{{ url('pais') }}" class="nav-item nav-link">PAIS</a>
-                                <a href="{{ url('disciplina') }}" class="nav-item nav-link">DISCIPLINA</a>
-                                
-                                <a href="{{ url('deportistas') }}" class="nav-item nav-link">DEPORTISTA</a>
+                                <a href="{{ route('pais.index') }}" class="nav-item nav-link {{ request()->routeIs('pais.index') ? 'active' : '' }}">INICIO</a>
+                                <a href="{{ route('pais.index') }}" class="nav-item nav-link {{ request()->routeIs('pais.*') ? 'active' : '' }}">PAÍS</a>
+                                <a href="{{ route('disciplina.index') }}" class="nav-item nav-link {{ request()->routeIs('disciplina.*') ? 'active' : '' }}">DISCIPLINA</a>
+                                <a href="{{ route('deportistas.index') }}" class="nav-item nav-link {{ request()->routeIs('deportistas.*') ? 'active' : '' }}">DEPORTISTA</a>
                             </div>
                         </div>
                     </nav>
@@ -111,22 +95,19 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('lib/wow/wow.min.js') }}"></script>
-<script src="{{ asset('lib/easing/easing.min.js') }}"></script>
-<script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
-<script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
-<script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
-<script src="{{ asset('lib/tempusdominus/js/moment.min.js') }}"></script>
-<script src="{{ asset('lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
-<script src="{{ asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('lib/easing/easing.min.js') }}"></script>
+    <script src="{{ asset('lib/waypoints/waypoints.min.js') }}"></script>
+    <script src="{{ asset('lib/counterup/counterup.min.js') }}"></script>
+    <script src="{{ asset('lib/owlcarousel/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('lib/tempusdominus/js/moment.min.js') }}"></script>
+    <script src="{{ asset('lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
+    <script src="{{ asset('lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
 
-<script src="{{ asset('js/main.js') }}"></script>
-
-
-    <!-- Scripts adicionales de la plantilla original -->
-    <!-- DataTables -->
+    <!-- Scripts adicionales -->
     <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/dataTables.buttons.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.html5.min.js"></script>
@@ -134,16 +115,61 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-
-    <!-- FileInput -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.4/js/fileinput.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-fileinput/5.5.0/js/locales/es.min.js"></script>
-
-    <!-- SweetAlert2 -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.3/dist/sweetalert2.all.min.js"></script>
-
-    <!-- Validación -->
     <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.19.5/dist/jquery.validate.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Logout con confirmación
+            document.getElementById('logoutBtn')?.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                Swal.fire({
+                    title: '¿Cerrar Sesión?',
+                    text: "¿Estás seguro que deseas salir del sistema?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Sí, cerrar sesión',
+                    cancelButtonText: 'Cancelar'
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.href = "{{ route('logout') }}";
+                    }
+                });
+            });
+            
+            // Ocultar spinner después de cargar
+            setTimeout(() => {
+                const spinner = document.getElementById('spinner');
+                if (spinner) {
+                    spinner.style.display = 'none';
+                }
+            }, 500);
+            
+            // Mostrar mensajes de éxito/error
+            @if(session('success'))
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Éxito!',
+                    text: "{{ session('success') }}",
+                    confirmButtonColor: '#3085d6',
+                });
+            @endif
+            
+            @if(session('error'))
+                Swal.fire({
+                    icon: 'error',
+                    title: '¡Error!',
+                    text: "{{ session('error') }}",
+                    confirmButtonColor: '#3085d6',
+                });
+            @endif
+        });
+    </script>
 
     @stack('scripts')
 </body>
