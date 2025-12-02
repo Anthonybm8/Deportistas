@@ -7,7 +7,6 @@ use App\Models\Pais;
 
 class PaisController extends Controller
 {
-    // Agrega este constructor al INICIO de la clase
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -17,7 +16,6 @@ class PaisController extends Controller
             return $next($request);
         });
     }
-    // Tu código ORIGINAL sigue igual desde aquí
     public function index()
     {
         $paises = Pais::all();
@@ -73,7 +71,6 @@ class PaisController extends Controller
     {
         $pais = Pais::findOrFail($id);
 
-        // Verificar si tiene deportistas asociados
         if ($pais->deportistas()->count() > 0) {
             return redirect()->route('pais.index')
                 ->with('error', 'No se puede eliminar el país porque tiene deportistas asociados.');

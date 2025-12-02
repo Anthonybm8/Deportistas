@@ -7,7 +7,6 @@ use App\Models\Disciplina;
 
 class DisciplinaController extends Controller
 {
-    // Agrega este constructor al INICIO de la clase
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -17,7 +16,6 @@ class DisciplinaController extends Controller
             return $next($request);
         });
     }
-    // Tu código ORIGINAL sigue igual desde aquí
     public function index()
     {
         $disciplinas = Disciplina::all();
@@ -74,7 +72,6 @@ class DisciplinaController extends Controller
     {
         $disciplina = Disciplina::findOrFail($id);
 
-        // Verificar si tiene deportistas asociados
         if ($disciplina->deportistas()->count() > 0) {
             return redirect()->route('disciplina.index')
                 ->with('error', 'No se puede eliminar la disciplina porque tiene deportistas asociados.');

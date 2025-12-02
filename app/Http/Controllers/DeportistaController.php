@@ -9,7 +9,6 @@ use App\Models\Disciplina;
 
 class DeportistaController extends Controller
 {
-    // Agrega este constructor al INICIO de la clase
     public function __construct()
     {
         $this->middleware(function ($request, $next) {
@@ -19,7 +18,6 @@ class DeportistaController extends Controller
             return $next($request);
         });
     }
-    // Tu código ORIGINAL sigue igual desde aquí
     public function index()
     {
         $deportistas = Deportista::with(['pais', 'disciplina'])->get();
