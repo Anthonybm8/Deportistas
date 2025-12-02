@@ -8,7 +8,6 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        // Si ya está logueado, redirigir a países
         if (session('logueado')) {
             return redirect()->route('pais.index');
         }
@@ -26,9 +25,7 @@ class AuthController extends Controller
         $usuario = $request->username;
         $password = $request->password;
 
-        // Credenciales fijas
         if ($usuario == 'sistemas2026' && $password == 'sistemas123') {
-            // Crear sesión
             session(['logueado' => true]);
             session(['username' => $usuario]);
             
@@ -41,7 +38,6 @@ class AuthController extends Controller
 
     public function logout()
     {
-        // Destruir sesión
         session()->forget(['logueado', 'username']);
         session()->flush();
         
