@@ -145,7 +145,6 @@ $(document).ready(function() {
         }
     });
 
-    // Establecer fecha máxima como hoy
     const today = new Date().toISOString().split('T')[0];
     document.getElementById('Fecha').max = today;
 });
