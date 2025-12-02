@@ -5,10 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Sistema Deportistas</title>
     
-    <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -201,20 +199,9 @@
             </button>
         </form>
         
-        <div class="credentials-card">
-            <h6><i class="fas fa-key me-2"></i> Credenciales de Acceso</h6>
-            <div class="cred-item">
-                <i class="fas fa-user"></i>
-                <span class="ms-3">Usuario: <strong>sistemas2026</strong></span>
-            </div>
-            <div class="cred-item">
-                <i class="fas fa-lock"></i>
-                <span class="ms-3">Contraseña: <strong>sistemas123</strong></span>
-            </div>
-        </div>
+        
     </div>
 
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     
     <script>
@@ -231,7 +218,6 @@
             }
         }
         
-        // Auto cerrar alerts después de 5 segundos
         setTimeout(() => {
             const alerts = document.querySelectorAll('.alert');
             alerts.forEach(alert => {
