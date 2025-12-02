@@ -3,42 +3,34 @@
 @section('contenido')
 
 <div class="d-flex justify-content-between align-items-center mb-3">
-    <h1>Listado de Deportistas</h1>
-    <a href="{{ route('deportistas.create') }}" class="btn btn-outline-primary">
-        <i class="fa fa-plus"></i> Nuevo Deportista
+    <h1>Listado de Disciplinas</h1>
+    <a href="{{ route('disciplina.create') }}" class="btn btn-outline-primary">
+        <i class="fa fa-plus"></i> Nueva Disciplina
     </a>
 </div>
 
 <div class="table-responsive">
-    <table id="deportistaTable" class="table table-striped table-bordered align-middle text-center">
+    <table id="disciplinaTable" class="table table-striped table-bordered align-middle text-center">
         <thead class="table-dark">
             <tr>
                 <th>ID</th>
-                <th>Nombre Completo</th>
-                <th>País</th>
-                <th>Disciplina</th>
-                <th>Fecha Nac.</th>
-                <th>Estatura (m)</th>
-                <th>Peso (kg)</th>
+                <th>Nombre de la Disciplina</th>
+                <th>Cantidad de Deportistas</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($deportistas as $deportista)
+            @foreach ($disciplinas as $disciplina)
                 <tr>
-                    <td>{{ $deportista->IdDeportista }}</td>
-                    <td>{{ $deportista->Nombre }} {{ $deportista->Apellido }}</td>
-                    <td>{{ $deportista->pais->NombrePais ?? 'N/A' }}</td>
-                    <td>{{ $deportista->disciplina->NombreDisciplina ?? 'N/A' }}</td>
-                    <td>{{ \Carbon\Carbon::parse($deportista->Fecha)->format('d/m/Y') }}</td>
-                    <td>{{ number_format($deportista->Estatura, 2) }}</td>
-                    <td>{{ number_format($deportista->Peso, 1) }}</td>
+                    <td>{{ $disciplina->IdDisciplina }}</td>
+                    <td>{{ $disciplina->NombreDisciplina }}</td>
+                    <td>{{ $disciplina->deportistas->count() }}</td>
                     <td class="text-center">
-                        <a href="{{ route('deportistas.edit', $deportista->IdDeportista) }}" class="btn btn-outline-warning btn-sm mb-1">
+                        <a href="{{ route('disciplina.edit', $disciplina->IdDisciplina) }}" class="btn btn-outline-warning btn-sm mb-1">
                             <i class="fas fa-edit"></i> Editar
                         </a>
 
-                        <form action="{{ route('deportistas.destroy', $deportista->IdDeportista) }}" method="POST" class="d-inline" id="eliminar-form-{{ $deportista->IdDeportista }}">
+                        <form action="{{ route('disciplina.destroy', $disciplina->IdDisciplina) }}" method="POST" class="d-inline" id="eliminar-form-{{ $disciplina->IdDisciplina }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-outline-danger btn-sm">
@@ -94,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
-    let table = new DataTable('#deportistaTable', {
+    let table = new DataTable('#disciplinaTable', {
         paging: true,
         responsive: true,
         layout: {
